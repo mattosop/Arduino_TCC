@@ -56,6 +56,15 @@ int* divide2byte(long float NUMERO)
 {
   float BYTE1, BYTE2;
   FR = (freq*pow(2,28))/CLK;
+  if FR <16384)//confirma que os numeros sejam menores que o limite
+  {
+    BYTE2 = 0;
+    BYTE1 = FR;
+  }
+  else
+  /*
+  /ocorreu estouro deve ser utilizado outros dois bytes
+  */
   return 2byte;
 }
 /*
@@ -64,4 +73,10 @@ int* divide2byte(long float NUMERO)
 \param 
 */
 int * concatena(valor);
-
+{
+  int* vet, i, teste;
+  for (i=0;i<2;i++)
+  {
+    vet[i] = concatena[i]
+  }
+  
