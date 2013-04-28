@@ -17,7 +17,7 @@
 int tempo = 200;
 float MSK, Freq, CLK;
 int rst;
-long float FREQ_REG_MSB,FREQ_REG_lSB,PHASE_REG_MSB,PHASE_REG_lSB,CONTROL_REG,RESET_REG;
+float FREQ_REG_MSB,FREQ_REG_lSB,PHASE_REG_MSB,PHASE_REG_lSB,CONTROL_REG,RESET_REG;
 
 void setup()
 {
@@ -28,10 +28,10 @@ void setup()
 \param CONTROL_REG e RESET_REG são fixos e podem ser declarados no setup()
 */
   pinMode(SS,OUTPUT);
-  pinMode(rst,IN);  
+  pinMode(rst,INPUT);  
   SPI.begin();
   SPI.setBitOrder(LSBFIRST);
-  CONTOL_REG = 0X2100;
+  CONTROL_REG = 0X2100;
   RESET_REG = 0X2000;
 }
 
@@ -43,7 +43,7 @@ void setup()
 float FREQ_REG(float CLK,float Freq)
 {
   float FR;
-  FR = (freq*pow(2,28))/CLK;
+  FR = (Freq*pow(2,28))/CLK;
   return FR;
 }
 
@@ -52,31 +52,36 @@ float FREQ_REG(float CLK,float Freq)
 \param NUMERO é a variavel de entrada
 \param 2bytes é o vetor contendo os dois bytes
 */
-int* divide2byte(long float NUMERO)
+int* divide2bt( float NUMERO)
 {
-  float BYTE1, BYTE2;
-  FR = (freq*pow(2,28))/CLK;
-  if FR <16384)//confirma que os numeros sejam menores que o limite
+  float BT1, BT2, FR;
+  int* bt;
+  FR = (Freq*pow(2,28))/CLK;
+  if (FR <16384)//confirma que os numeros sejam menores que o limite
   {
-    BYTE2 = 0;
-    BYTE1 = FR;
+    BT2 = 0;
+    BT1 = FR;
   }
   else
   /*
   /ocorreu estouro deve ser utilizado outros dois bytes
   */
-  return 2byte;
+  return bt;
 }
 /*
 \subtitle Função para concatenar bytes
 \brief Esta função permite alterar os bits 15 e 14 das palavras FRE_REG_MSB e FREQ_REG_LSB
 \param 
 */
-int * concatena(valor);
+int * concatena(int* valor)
 {
   int* vet, i, teste;
   for (i=0;i<2;i++)
   {
-    vet[i] = concatena[i]
+    vet[i] = valor[i];
   }
+}
+ void loop()
+{
   
+} 
