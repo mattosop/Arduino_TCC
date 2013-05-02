@@ -14,6 +14,8 @@
 \param rst tecla para habilitar a programação
 */
 #include <SPI.h>
+#include <ad9833.c>
+#include <ad9833.h>
 int tempo = 200;
 float MSK, Freq, CLK;
 int rst;
@@ -33,6 +35,10 @@ void setup()
   SPI.setBitOrder(LSBFIRST);
   CONTROL_REG = 0X2100;
   RESET_REG = 0X2000;
+
+  CLk = 18400000;
+
+  Freq= 100000;
 }
 
 /*
@@ -47,41 +53,19 @@ float FREQ_REG(float CLK,float Freq)
   return FR;
 }
 
-/*
-\subtitle Função para dividir em palavras de dois BYTES
-\param NUMERO é a variavel de entrada
-\param 2bytes é o vetor contendo os dois bytes
-*/
-int* divide2bt( float NUMERO)
-{
-  float BT1, BT2, FR;
-  int* bt;
-  FR = (Freq*pow(2,28))/CLK;
-  if (FR <16384)//confirma que os numeros sejam menores que o limite
-  {
-    BT2 = 0;
-    BT1 = FR;
-  }
-  else
-  /*
-  /ocorreu estouro deve ser utilizado outros dois bytes
-  */
-  return bt;
-}
-/*
-\subtitle Função para concatenar bytes
-\brief Esta função permite alterar os bits 15 e 14 das palavras FRE_REG_MSB e FREQ_REG_LSB
-\param 
-*/
-int * concatena(int* valor)
-{
-  int* vet, i, teste;
-  for (i=0;i<2;i++)
-  {
-    vet[i] = valor[i];
-  }
-}
+
  void loop()
 {
-  
-} 
+/*
+\param devem ser enviados dados para o DDS na seguinte ordem:
+\CONTROL_REG
+\FREQ_REGLSB
+\FREQ_REGMSB
+\PHASE_REG
+\RESET_REG
+*/
+
+
+ 
+}
+ 
